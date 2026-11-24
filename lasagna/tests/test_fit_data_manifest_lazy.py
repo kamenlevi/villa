@@ -364,6 +364,7 @@ class FitDataManifestLazyTests(unittest.TestCase):
 			with (
 				mock.patch.object(fit_data, "open_zarr", return_value=reader) as opened,
 				mock.patch("sparse_cache.SparseChunkGroupCache", _FakeSparseChunkGroupCache),
+				mock.patch("sparse_pool_cache.PooledChunkGroupCache", _FakeSparseChunkGroupCache),
 			):
 				data = fit_data.load_3d_streaming(path=str(manifest), device=torch.device("cpu"))
 
